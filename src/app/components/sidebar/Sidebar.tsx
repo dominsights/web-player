@@ -6,7 +6,7 @@ function Sidebar(props: { viewModel: SidebarViewModel}) {
         <div>
             Sidebar
             <ul>
-                {props.viewModel.playlists.map(p => (<li key={p.name}>{p.name}</li>))}
+                {props.viewModel.playlists.map(p => (<li key={p.id}>{p.name}</li>))}
             </ul>
         </div>
     );

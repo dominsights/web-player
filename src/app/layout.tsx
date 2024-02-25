@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/app/components/sidebar/Sidebar";
+import {SidebarViewModel} from "@/app/components/sidebar/SidebarViewModel";
+import {Playlist} from "@/app/components/sidebar/Playlist";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,10 +17,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    const viewModel = new SidebarViewModel();
+    const rock = new Playlist("Rock'n Roll");
+    const jazz = new Playlist("Jazz");
+
+    viewModel.addPlaylist(rock);
+    viewModel.addPlaylist(jazz);
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Sidebar/>
+        <Sidebar viewModel={viewModel}/>
         {children}
       </body>
     </html>

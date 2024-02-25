@@ -3,7 +3,7 @@ import {Playlist} from "@/app/components/sidebar/Playlist";
 
 describe("SidebarViewModel", () => {
     it("should contain a playlist list", () => {
-        const viewModel = new SidebarViewModel(playlists);
+        const viewModel = new SidebarViewModel([]);
         const rock = new Playlist("Rock'n Roll");
         const jazz = new Playlist("Jazz");
 

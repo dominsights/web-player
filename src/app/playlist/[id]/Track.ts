@@ -14,7 +14,7 @@ export class Track {
         this.time = this.secondsToTime(durationInSeconds);
     }
 
-    formatDate = (date: Date) => {
+    formatDate(date: Date) {
         const today = new Date();
         let oneWeekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
 
@@ -26,7 +26,7 @@ export class Track {
         }
     }
 
-    secondsToTime = (seconds: number): string => {
+    secondsToTime (seconds: number): string {
         const minutes: number = Math.floor(seconds / 60);
         const remainingSeconds: number = seconds % 60;
         return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;

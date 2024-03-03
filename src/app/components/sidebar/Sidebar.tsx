@@ -10,7 +10,7 @@ function Sidebar(props: { viewModel: SidebarViewModel}) {
                 {props.viewModel.playlists.map(p =>
                     (
                         <li key={p.id}>
-                            <Link href={`/playlist/${p.id}`}>{p.name}</Link>
+                            <Link href={`/playlist/${p.id}`}>{p.title}</Link>
                         </li>
                     ))}
             </ul>

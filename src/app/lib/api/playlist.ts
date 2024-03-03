@@ -1,8 +1,15 @@
-import {Playlist} from "@/app/components/sidebar/Playlist";
+import { Track } from "./Track";
 
-export const getPlaylists = async () => {
-    const rock = new Playlist(1,"Rock'n Roll");
-    const jazz = new Playlist(2,"Jazz");
+export class Playlist {
+    id: number;
+    title: string;
+    description: string;
+    tracks: Track[];
 
-    return Promise.resolve([ rock, jazz ]);
+    constructor(id: number, title: string, description: string, tracks: Track[]) {
+        this.id = id;
+        this.title = title;
+        this.tracks = tracks;
+        this.description = description;
+    }
 }

@@ -1,5 +1,5 @@
+import { Track } from "@/app/lib/api/Track";
 import { Player } from "@/app/lib/player/Player";
-import { Track } from "./Track";
 import { Track as PlayerTrack } from "@/app/lib/player/Track";
 
 export class PlaylistViewModel {

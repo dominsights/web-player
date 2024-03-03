@@ -4,14 +4,14 @@ export class Track {
     artist: string;
     album: string;
     dateAdded: string;
-    time: string;
+    duration: string;
 
     constructor(title: string, artist: string, album: string, dateAdded: Date, durationInSeconds: number) {
         this.title = title;
         this.artist = artist;
         this.album = album;
         this.dateAdded = this.formatDate(dateAdded);
-        this.time = this.secondsToTime(durationInSeconds);
+        this.duration = this.secondsToTime(durationInSeconds);
     }
 
     formatDate(date: Date) {

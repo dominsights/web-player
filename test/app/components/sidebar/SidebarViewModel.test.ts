@@ -1,5 +1,5 @@
 import {SidebarViewModel} from "@/app/components/sidebar/SidebarViewModel";
-import {Playlist} from "@/app/components/sidebar/Playlist";
+import {Playlist} from "@/app/lib/api/Playlist";
 
 describe("SidebarViewModel", () => {
     it("should contain a playlist list", () => {

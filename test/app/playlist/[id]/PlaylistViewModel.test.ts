@@ -27,10 +27,12 @@ describe('PlaylistViewModel', () => {
 
     it('should play selected track', () => {
         playlistVM.play(track1);
+        expect(player.currentTrack?.title).toBe(track1.title);
     });
 
     it('should move track to new position', () => {
         playlistVM.move(track1, 2);
+        expect(playlistVM.tracks).toEqual([track2, track1]);
     });
 
     it('should edit playlist title and description', () => {

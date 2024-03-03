@@ -15,6 +15,6 @@ export const getPlaylists = async () => {
     return Promise.resolve(playlists);
 }
 
-export const getPlaylistById = (id: number) => {
-    return playlists.find(p => p.id === id);
+export const getPlaylistById = async (id: number) => {
+    return  Promise.resolve(playlists.find(p => p.id === id));
 }

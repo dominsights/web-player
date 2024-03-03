@@ -5,10 +5,14 @@ import { Track as PlayerTrack } from "@/app/lib/Player/Track"
 export class PlaylistViewModel {
     player: Player;
     tracks: Track[];
+    title: string;
+    description: string;
 
-    constructor(tracks: Track[], player: Player) {
+    constructor(title: string, description: string, tracks: Track[], player: Player) {
         this.tracks = tracks;
         this.player = player;
+        this.title = title;
+        this.description = description;
     }
 
     remove(track: Track) {
@@ -28,5 +32,10 @@ export class PlaylistViewModel {
         const i = this.tracks.indexOf(track);
         this.tracks.splice(i, 1);
         this.tracks.splice(newPosition - 1, 0, track);
+    }
+
+    edit(title: string, description: string) {
+        this.title = title;
+        this.description = description;
     }
 }

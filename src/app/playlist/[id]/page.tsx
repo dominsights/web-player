@@ -29,5 +29,5 @@ export default function Page() {
     }
 
     const playlistVM = new PlaylistViewModel(playlist.title, playlist.description, playlist.tracks, player);
-    return (<PlaylistView viewModel={playlistVM}></PlaylistView>)
+    return (<PlaylistView viewModel={playlistVM}/>)
 }

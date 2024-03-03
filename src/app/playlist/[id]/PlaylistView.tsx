@@ -5,6 +5,7 @@ export default function PlaylistView({viewModel}: { viewModel: PlaylistViewModel
   return (
     <div>
         <p>Playlist: {viewModel.title}</p>
+        <button onClick={() => viewModel.playAll()}>Play All</button>
         <table>
             <thead>
                 <tr>

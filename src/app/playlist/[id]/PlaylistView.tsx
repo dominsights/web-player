@@ -14,6 +14,7 @@ export default function PlaylistView({viewModel}: { viewModel: PlaylistViewModel
                     <th>Album</th>
                     <th>Date added</th>
                     <th>Time</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,7 @@ export default function PlaylistView({viewModel}: { viewModel: PlaylistViewModel
                         <td>{t.album}</td>
                         <td>{t.dateAdded}</td>
                         <td>{t.duration}</td>
+                        <td><button onClick={() => viewModel.play(t)}>Play</button></td>
                     </tr>
                 ))}
             </tbody>

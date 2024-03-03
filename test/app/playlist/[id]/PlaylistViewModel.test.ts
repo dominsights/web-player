@@ -1,4 +1,4 @@
-import { Player } from "@/app/lib/Player/Player";
+import { Player } from "@/app/lib/player/Player";
 import { PlaylistViewModel } from "@/app/playlist/[id]/PlaylistViewModel";
 import { Track } from "@/app/playlist/[id]/Track"
 

@@ -23,4 +23,10 @@ export class PlaylistViewModel {
     play(track: Track) {
         this.player.play(new PlayerTrack(track.title));
     }
+
+    move(track: Track, newPosition: number) {
+        const i = this.tracks.indexOf(track);
+        this.tracks.splice(i, 1);
+        this.tracks.splice(newPosition - 1, 0, track);
+    }
 }

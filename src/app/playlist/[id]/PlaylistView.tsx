@@ -1,11 +1,15 @@
 import React from 'react'
-import { PlaylistViewModel } from './PlaylistViewModel'
+import { usePlaylistViewModel } from './usePlaylistViewModel';
+import { Player } from '@/app/lib/player/Player';
+import { Playlist } from '@/app/lib/api/Playlist';
 
-export default function PlaylistView({viewModel}: { viewModel: PlaylistViewModel}) {
+export default function PlaylistView({ playlistId, player, fetchPlaylist }: { playlistId: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist>}) {
+const { title, description, tracks, remove, playAll, play, move, edit } = usePlaylistViewModel(playlistId, player, fetchPlaylist);
+
   return (
     <div>
-        <p>Playlist: {viewModel.title}</p>
-        <button onClick={() => viewModel.playAll()}>Play All</button>
+        <p>Playlist: {title}</p>
+        <button onClick={() => playAll()}>Play All</button>
         <table>
             <thead>
                 <tr>
@@ -18,14 +22,17 @@ export default function PlaylistView({viewModel}: { viewModel: PlaylistViewModel
                 </tr>
             </thead>
             <tbody>
-                {viewModel.tracks.map(t => (
+                {tracks.map(t => (
                     <tr key={t.title}>
                         <td>{t.title}</td>
                         <td>{t.artist}</td>
                         <td>{t.album}</td>
                         <td>{t.dateAdded}</td>
                         <td>{t.duration}</td>
-                        <td><button onClick={() => viewModel.play(t)}>Play</button></td>
+                        <td>
+                            <button onClick={() => play(t)}>Play</button>
+                            <button onClick={() => remove(t)}>Remove</button>
+                        </td>
                     </tr>
                 ))}
             </tbody>

@@ -1,7 +1,7 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  testEnvironment: 'js-dom',
   moduleNameMapper: {
     '^@/app/(.*)$': '<rootDir>/src/app/$1',
   }

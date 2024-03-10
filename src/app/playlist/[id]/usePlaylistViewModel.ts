@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Track } from "@/app/lib/api/Track";
 import { Player } from "@/app/lib/player/Player";
 import { Track as PlayerTrack } from "@/app/lib/player/Track";
 import { Playlist } from '@/app/lib/api/Playlist';
 
-export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist>) => {
+export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist | undefined>) => {
     fetchPlaylist(+id)
         .then(data => {
-            setTitle(data.title);
-            setDescription(data.description);
-            setTracks(data.tracks);
+            if (data) {
+                setTitle(data.title);
+                setDescription(data.description);
+                setTracks(data.tracks);
+            }
         });
 
     const [title, setTitle] = useState('');

@@ -2,7 +2,7 @@ import { Playlist } from "@/app/lib/api/Playlist";
 import { Track } from "@/app/lib/api/Track";
 import { Player } from "@/app/lib/player/Player";
 import { usePlaylistViewModel } from "@/app/playlist/[id]/usePlaylistViewModel";
-import { renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 
 
 describe('PlaylistViewModel', () => {
@@ -18,7 +18,10 @@ describe('PlaylistViewModel', () => {
     const { title, description, tracks, remove, playAll, play, move, edit } = result.current;
 
     it('should remove track from playlist', () => {
-        remove(track1);
+        act(() => {
+            result.current.remove(track1)
+            //remove(track1);
+        })
         expect(tracks).toEqual([track2]);
     });
 
@@ -33,12 +36,16 @@ describe('PlaylistViewModel', () => {
     });
 
     it('should move track to new position', () => {
-        move(track1, 2);
+        act(() => {
+            move(track1, 2);
+        })
         expect(tracks).toEqual([track2, track1]);
     });
 
     it('should edit playlist title and description', () => {
-        edit('new title', 'new description');
+        act(() => {
+            edit('new title', 'new description');
+        })
         expect(title).toBe('new title');
         expect(description).toBe('new description');
     });

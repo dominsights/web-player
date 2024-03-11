@@ -1,22 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Track } from "@/app/lib/api/Track";
 import { Player } from "@/app/lib/player/Player";
 import { Track as PlayerTrack } from "@/app/lib/player/Track";
 import { Playlist } from '@/app/lib/api/Playlist';
 
-export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist | undefined>) => {
-    fetchPlaylist(+id)
-        .then(data => {
-            if (data) {
-                setTitle(data.title);
-                setDescription(data.description);
-                setTracks(data.tracks);
-            }
-        });
-
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [tracks, setTracks] = useState<Track[]>([]);
+export const usePlaylistViewModel = (id: number, player: Player, playlist: Playlist) => {
+    const [title, setTitle] = useState(playlist.title);
+    const [description, setDescription] = useState(playlist.description);
+    const [tracks, setTracks] = useState<Track[]>(playlist.tracks);
 
     const remove = (track: Track) => {
         setTracks(prevTracks => prevTracks.filter(t => t !== track));

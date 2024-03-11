@@ -3,8 +3,8 @@ import { usePlaylistViewModel } from './usePlaylistViewModel';
 import { Player } from '@/app/lib/player/Player';
 import { Playlist } from '@/app/lib/api/Playlist';
 
-export default function PlaylistView({ playlistId, player, fetchPlaylist }: { playlistId: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist | undefined>}) {
-const { title, description, tracks, remove, playAll, play, move, edit } = usePlaylistViewModel(playlistId, player, fetchPlaylist);
+export default function PlaylistView({ playlistId, player, playlist }: { playlistId: number, player: Player, playlist: Playlist}) {
+    const { title, description, tracks, remove, playAll, play, move, edit } = usePlaylistViewModel(playlistId, player, playlist!);
 
   return (
     <div>

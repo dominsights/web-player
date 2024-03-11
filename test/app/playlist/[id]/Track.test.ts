@@ -1,4 +1,4 @@
-import { Track } from "@/app/playlist/[id]/Track";
+import { Track } from "@/app/lib/api/Track";
 
 describe('Track', () => {
     it('should display date in expected format', () => {

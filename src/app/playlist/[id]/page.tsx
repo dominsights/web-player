@@ -12,25 +12,11 @@ export default function Page() {
 
     const [playlist, setPlaylist] = useState<Playlist>();
 
-    useEffect(() => {
-        getPlaylistById(+id)
-            .then(data => {
-                if(data) {
-                    setPlaylist(data)
-                }
-            });
-
-    }, [id])
-
-    if(!playlist) {
-        return <div>Playlist not found!</div>
-    }
-
     return (
         <PlaylistView
             playlistId={+id}
             player={player}
-            playlist={playlist}
+            fetchPlaylist={getPlaylistById}
         />
     );
 }

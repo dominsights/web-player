@@ -1,17 +1,30 @@
 import React from 'react'
-import { usePlaylistViewModel } from './usePlaylistViewModel';
-import { Player } from '@/app/lib/player/Player';
-import { Playlist } from '@/app/lib/api/Playlist';
+import {usePlaylistViewModel} from './usePlaylistViewModel';
+import {Player} from '@/app/lib/player/Player';
+import {Playlist} from '@/app/lib/api/Playlist';
 
-export default function PlaylistView({ playlistId, player, playlist }: { playlistId: number, player: Player, playlist: Playlist}) {
-    const { title, description, tracks, remove, playAll, play, move, edit } = usePlaylistViewModel(playlistId, player, playlist!);
+export default function PlaylistView({playlistId, player, fetchPlaylist}: {
+    playlistId: number,
+    player: Player,
+    fetchPlaylist: (id: number) => Promise<Playlist | undefined>
+}) {
+    const {
+        title,
+        description,
+        tracks,
+        remove,
+        playAll,
+        play,
+        move,
+        edit
+    } = usePlaylistViewModel(playlistId, player, fetchPlaylist);
 
-  return (
-    <div>
-        <p>Playlist: {title}</p>
-        <button onClick={() => playAll()}>Play All</button>
-        <table>
-            <thead>
+    return (
+        <div>
+            <p>Playlist: {title}</p>
+            <button onClick={() => playAll()}>Play All</button>
+            <table>
+                <thead>
                 <tr>
                     <th>Title</th>
                     <th>Artist</th>
@@ -20,8 +33,8 @@ export default function PlaylistView({ playlistId, player, playlist }: { playlis
                     <th>Time</th>
                     <th></th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 {tracks.map(t => (
                     <tr key={t.title}>
                         <td>{t.title}</td>
@@ -35,7 +48,7 @@ export default function PlaylistView({ playlistId, player, playlist }: { playlis
                         </td>
                     </tr>
                 ))}
-            </tbody>
-        </table>
-    </div>)
+                </tbody>
+            </table>
+        </div>)
 }

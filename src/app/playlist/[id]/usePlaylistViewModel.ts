@@ -1,60 +1,66 @@
-import {useEffect, useState} from 'react';
-import { Track } from "@/app/lib/api/Track";
+import { useEffect, useState } from 'react';
 import { Player } from "@/app/lib/player/Player";
+import { Track } from "@/app/lib/api/Track";
+import { Playlist } from "@/app/lib/api/Playlist";
 import { Track as PlayerTrack } from "@/app/lib/player/Track";
-import { Playlist } from '@/app/lib/api/Playlist';
+
 
 export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist | undefined>) => {
-    const [title, setTitle] = useState<string>();
-    const [description, setDescription] = useState<string>();
-    const [tracks, setTracks] = useState<Track[]>([]);
+    const [playlist, setPlaylist] = useState<Playlist | undefined>();
 
     useEffect(() => {
         fetchPlaylist(+id)
             .then(data => {
-                if(data) {
-                    setTitle(data.title);
-                    setDescription(data.description);
-                    setTracks(data.tracks ?? []);
+                if (data) {
+                    setPlaylist(data);
                 }
             });
-    },[id]);
+    }, [id]);
 
+    const removeTrack = (track: Track) => {
+        setPlaylist(prevPlaylist => {
+            if (prevPlaylist) {
+                return prevPlaylist.removeTrack(track);
+            }
+            return prevPlaylist;
+        });
+    };
 
-    const remove = (track: Track) => {
-        setTracks(prevTracks => prevTracks.filter(t => t !== track));
-    }
+    const moveTrack = (track: Track, newPosition: number) => {
+        setPlaylist(prevPlaylist => {
+            if (prevPlaylist) {
+                return prevPlaylist.moveTrack(track, newPosition);
+            }
+            return prevPlaylist;
+        });
+    };
 
-    const playAll = () => {
-        const playerTracks: PlayerTrack[] = tracks.map(t => ({ title: t.title }));
-        player.playAll(playerTracks);
-    }
+    const editPlaylist = (newTitle: string, newDescription: string) => {
+        setPlaylist(prevPlaylist => {
+            if (prevPlaylist) {
+                return prevPlaylist.editPlaylist(newTitle, newDescription);
+            }
+            return prevPlaylist;
+        });
+    };
 
     const play = (track: Track) => {
         player.play(new PlayerTrack(track.title));
-    }
+    };
 
-    const move = (track: Track, newPosition: number) => {
-        const i = tracks.indexOf(track);
-        const updatedTracks = [...tracks];
-        updatedTracks.splice(i, 1);
-        updatedTracks.splice(newPosition - 1, 0, track);
-        setTracks(updatedTracks);
-    }
-
-    const edit = (newTitle: string, newDescription: string) => {
-        setTitle(newTitle);
-        setDescription(newDescription);
-    }
+    const playAll = () => {
+        if (playlist) {
+            const playerTracks: PlayerTrack[] = playlist.tracks.map(t => ({ title: t.title }));
+            player.playAll(playerTracks);
+        }
+    };
 
     return {
-        title,
-        description,
-        tracks,
-        remove,
-        playAll,
+        playlist,
+        removeTrack,
+        moveTrack,
+        editPlaylist,
         play,
-        move,
-        edit
+        playAll
     };
 };

@@ -13,23 +13,27 @@ export class Playlist {
         this.description = description;
     }
 
-    removeTrack(track: Track): Playlist {
-        const updatedTracks = this.tracks.filter(t => t !== track);
-        return new Playlist(this.id, this.title, this.description, updatedTracks);
-    }
 
-    moveTrack(track: Track, newPosition: number): Playlist {
-        const index = this.tracks.indexOf(track);
-        if (index === -1) {
-            return this;
-        }
-        const updatedTracks = [...this.tracks];
-        const removed = updatedTracks.splice(index, 1);
-        updatedTracks.splice(newPosition - 1, 0, ...removed);
-        return new Playlist(this.id, this.title, this.description, updatedTracks);
-    }
-
-    editPlaylist(newTitle: string, newDescription: string): Playlist {
-        return new Playlist(this.id, newTitle, newDescription, this.tracks);
-    }
 }
+
+function remove(playlist: Playlist, track: Track): Playlist {
+    const updatedTracks = playlist.tracks.filter(t => t !== track);
+    return new Playlist(playlist.id, playlist.title, playlist.description, updatedTracks);
+}
+
+function move(playlist: Playlist, track: Track, newPosition: number): Playlist {
+    const index = playlist.tracks.indexOf(track);
+    if (index === -1) {
+        return playlist;
+    }
+    const updatedTracks = [...playlist.tracks];
+    const removed = updatedTracks.splice(index, 1);
+    updatedTracks.splice(newPosition - 1, 0, ...removed);
+    return new Playlist(playlist.id, playlist.title, playlist.description, updatedTracks);
+}
+
+function edit(playlist: Playlist, newTitle: string, newDescription: string): Playlist {
+    return new Playlist(playlist.id, newTitle, newDescription, playlist.tracks);
+}
+
+export { remove, move, edit }

@@ -14,15 +14,12 @@ describe('PlaylistViewModel', () => {
 
     it('should load correct data', async () => {
         const { result } = renderHook(() => usePlaylistViewModel(1, player, fetchPlaylist));
-
         await waitFor(() => result.current.playlist !== undefined);
-
         expect(result.current.playlist).toEqual(playlist);
     });
 
     it('should remove track from playlist', async () => {
         const { result } = renderHook(() => usePlaylistViewModel(1, player, fetchPlaylist));
-
         await waitFor(() => result.current.playlist !== undefined);
 
         act(() => {
@@ -34,7 +31,6 @@ describe('PlaylistViewModel', () => {
 
     it('should play selected track', async () => {
         const { result } = renderHook(() => usePlaylistViewModel(1, player, fetchPlaylist));
-
         await waitFor(() => result.current.playlist !== undefined);
 
         act(() => {
@@ -46,7 +42,6 @@ describe('PlaylistViewModel', () => {
 
     it('should move track to new position', async () => {
         const { result } = renderHook(() => usePlaylistViewModel(1, player, fetchPlaylist));
-
         await waitFor(() => result.current.playlist !== undefined);
 
         act(() => {
@@ -58,7 +53,6 @@ describe('PlaylistViewModel', () => {
 
     it('should edit playlist title and description', async () => {
         const { result } = renderHook(() => usePlaylistViewModel(1, player, fetchPlaylist));
-
         await waitFor(() => result.current.playlist !== undefined);
 
         act(() => {

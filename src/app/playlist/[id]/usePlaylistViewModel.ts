@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Player } from "@/app/lib/player/Player";
 import { Track } from "@/app/lib/api/Track";
-import { Playlist } from "@/app/lib/api/Playlist";
+import {edit, move, Playlist, remove} from "@/app/lib/api/Playlist";
 import { Track as PlayerTrack } from "@/app/lib/player/Track";
 
 export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist | undefined>) => {
-    const [playlist, setPlaylist] = useState<Playlist | undefined>();
+    const [playlist, setPlaylist] = useState<Playlist>();
 
     useEffect(() => {
         fetchPlaylist(+id)
@@ -14,12 +14,12 @@ export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: 
                     setPlaylist(data);
                 }
             });
-    }, [id, playlist]);
+    }, [id]);
 
     const removeTrack = (track: Track) => {
         setPlaylist(prevPlaylist => {
             if (prevPlaylist) {
-                return prevPlaylist.removeTrack(track);
+                return remove(prevPlaylist, track);
             }
             return prevPlaylist;
         });
@@ -28,7 +28,7 @@ export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: 
     const moveTrack = (track: Track, newPosition: number) => {
         setPlaylist(prevPlaylist => {
             if (prevPlaylist) {
-                return prevPlaylist.moveTrack(track, newPosition);
+                return move(prevPlaylist, track, newPosition);
             }
             return prevPlaylist;
         });
@@ -37,7 +37,7 @@ export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: 
     const editPlaylist = (newTitle: string, newDescription: string) => {
         setPlaylist(prevPlaylist => {
             if (prevPlaylist) {
-                return prevPlaylist.editPlaylist(newTitle, newDescription);
+                return edit(prevPlaylist, newTitle, newDescription);
             }
             return prevPlaylist;
         });

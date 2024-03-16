@@ -11,6 +11,7 @@ export default function PlaylistView({playlistId, player, fetchPlaylist}: {
     const {
         playAll,
         play,
+        removeTrack,
         playlist
     } = usePlaylistViewModel(playlistId, player, fetchPlaylist);
 
@@ -39,7 +40,7 @@ export default function PlaylistView({playlistId, player, fetchPlaylist}: {
                         <td>{t.duration}</td>
                         <td>
                             <button onClick={() => play(t)}>Play</button>
-                            <button onClick={() => playlist?.removeTrack(t)}>Remove</button>
+                            <button onClick={() => removeTrack(t)}>Remove</button>
                         </td>
                     </tr>
                 ))}

@@ -9,19 +9,14 @@ export default function PlaylistView({playlistId, player, fetchPlaylist}: {
     fetchPlaylist: (id: number) => Promise<Playlist | undefined>
 }) {
     const {
-        title,
-        description,
-        tracks,
-        remove,
         playAll,
         play,
-        move,
-        edit
+        playlist
     } = usePlaylistViewModel(playlistId, player, fetchPlaylist);
 
     return (
         <div>
-            <p>Playlist: {title}</p>
+            <p>Playlist: {playlist?.title}</p>
             <button onClick={() => playAll()}>Play All</button>
             <table>
                 <thead>
@@ -35,7 +30,7 @@ export default function PlaylistView({playlistId, player, fetchPlaylist}: {
                 </tr>
                 </thead>
                 <tbody>
-                {tracks.map(t => (
+                {playlist?.tracks.map(t => (
                     <tr key={t.title}>
                         <td>{t.title}</td>
                         <td>{t.artist}</td>
@@ -44,7 +39,7 @@ export default function PlaylistView({playlistId, player, fetchPlaylist}: {
                         <td>{t.duration}</td>
                         <td>
                             <button onClick={() => play(t)}>Play</button>
-                            <button onClick={() => remove(t)}>Remove</button>
+                            <button onClick={() => playlist?.removeTrack(t)}>Remove</button>
                         </td>
                     </tr>
                 ))}

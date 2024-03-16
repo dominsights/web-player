@@ -14,7 +14,7 @@ export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: 
                     setPlaylist(data);
                 }
             });
-    }, [id]);
+    }, [id, playlist]);
 
     const removeTrack = (track: Track) => {
         setPlaylist(prevPlaylist => {

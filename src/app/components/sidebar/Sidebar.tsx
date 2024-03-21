@@ -14,6 +14,7 @@ function Sidebar(props: { viewModel: SidebarViewModel}) {
                         </li>
                     ))}
             </ul>
+            <Link href={'/music-library'}>Music Library</Link>
         </div>
     );
 }

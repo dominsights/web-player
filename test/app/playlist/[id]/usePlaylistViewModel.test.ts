@@ -10,7 +10,7 @@ describe('PlaylistViewModel', () => {
     const track2 = new Track("Without Walls", "IQ", "The Road of Bones", new Date(2024, 3, 2), 60 * 5);
 
     const playlist: Playlist = new Playlist(1, "Rock'n Roll", "My favorite Rock'n Roll songs", [track1, track2]);
-    const fetchPlaylist = jest.fn().mockResolvedValue(playlist);
+    const fetchPlaylist = (id: number) => Promise.resolve(playlist);
 
     it('should load correct data', async () => {
         const { result } = renderHook(() => usePlaylistViewModel(1, player, fetchPlaylist));

@@ -15,6 +15,8 @@ export class Player {
     }
 
     play(track: Track) {
+        console.log(track);
+
         this.playQueue.unshift(track);
         this.currentTrack = track;
     }

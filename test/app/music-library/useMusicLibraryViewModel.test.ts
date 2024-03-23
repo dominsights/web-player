@@ -1,7 +1,7 @@
 import {act, renderHook} from "@testing-library/react";
 import {useMusicLibraryViewModel} from "@/app/music-library/useMusicLibraryViewModel";
 
-import * as PlayQueueContextModule from '@/app/contexts/PlayQueueContext';
+import { usePlayQueueContext } from '@/app/contexts/PlayQueueContext';
 
 jest.mock('@/app/contexts/PlayQueueContext', () => ({
     __esModule: true,
@@ -10,13 +10,15 @@ jest.mock('@/app/contexts/PlayQueueContext', () => ({
 
 const mockUpdateCurrentTrack = jest.fn();
 
-const mockUsePlayQueueContext = PlayQueueContextModule.usePlayQueueContext as jest.MockedFunction<typeof PlayQueueContextModule.usePlayQueueContext>;
-mockUsePlayQueueContext.mockReturnValue({
-    currentTrack: '',
-    updateCurrentTrack: mockUpdateCurrentTrack
-});
-
 describe("MusicLibraryViewModel", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+        (usePlayQueueContext as jest.Mock).mockReturnValue({
+            currentTrack: '',
+            updateCurrentTrack: mockUpdateCurrentTrack
+        });
+    })
+
     it("should upload a song file", () => {
         const {result} = renderHook(() => useMusicLibraryViewModel());
 

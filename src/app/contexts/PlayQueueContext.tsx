@@ -1,17 +1,25 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react';
 
 interface PlayQueueType {
-    currentTrack: File | undefined;
+    currentTrack: string | undefined;
     updateCurrentTrack: (newValue: File) => void;
 }
 
 const PlayQueueContext = createContext<PlayQueueType | undefined>(undefined);
 
 export const PlayQueueProvider: React.FC<{ children: ReactNode }> = ({children}) => {
-    const [currentTrack, setCurrentTrack] = useState<File>();
+    const [currentTrack, setCurrentTrack] = useState<string>();
 
-    const updateCurrentTrack = (newValue: File) => {
-        setCurrentTrack(newValue);
+    const updateCurrentTrack = (track: File) => {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            if (e.target && typeof e.target.result === 'string') {
+                setCurrentTrack(e.target.result);
+            }
+        };
+
+        reader.readAsDataURL(track);
     };
 
     return (

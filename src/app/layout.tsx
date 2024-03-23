@@ -5,7 +5,7 @@ import "./globals.css";
 import Sidebar from "@/app/components/sidebar/Sidebar";
 import {SidebarViewModel} from "@/app/components/sidebar/SidebarViewModel";
 import { getPlaylists } from "@/app/lib/api/playlists";
-import {PlayQueueProvider} from "@/contexts/PlayQueueContext";
+import {PlayQueueProvider} from "@/app/contexts/PlayQueueContext";
 import Player from "@/app/components/player/Player";
 
 const inter = Inter({ subsets: ["latin"] });

@@ -1,4 +1,4 @@
-import { Playlist } from "../../lib/api/Playlist";
+import { Playlist } from "@/app/lib/api/playlist";
 
 export class SidebarViewModel {
     playlists: Playlist[];

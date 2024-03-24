@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Player } from "@/app/lib/player/Player";
 import { Track } from "@/app/lib/api/Track";
 import {edit, move, Playlist, remove} from "@/app/lib/api/Playlist";
-import { Track as PlayerTrack } from "@/app/lib/player/Track";
+import { Player } from '@/app/lib/Player/Player';
+import { Track as PlayerTrack } from "@/app/lib/Player/Track";
 
 export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist | undefined>) => {
     const [playlist, setPlaylist] = useState<Playlist>();

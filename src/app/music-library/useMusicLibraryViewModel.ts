@@ -4,7 +4,7 @@ import {usePlayQueueContext} from "@/app/contexts/PlayQueueContext";
 export const useMusicLibraryViewModel = () => {
     const [musics, setMusics] = useState<string[]>([]);
     const [musicFiles, setMusicFiles] = useState<File[]>([]);
-    const {currentTrack, updateCurrentTrack} = usePlayQueueContext();
+    const { updateCurrentTrack} = usePlayQueueContext();
 
     const upload = (audioFile: File) => {
         setMusicFiles(prevState => {

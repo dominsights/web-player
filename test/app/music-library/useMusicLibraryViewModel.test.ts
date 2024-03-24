@@ -6,7 +6,6 @@ const mockUpdateCurrentTrack = jest.fn();
 jest.mock('@/app/contexts/PlayQueueContext', () => ({
     usePlayQueueContext: jest.fn(() => {
         return {
-            currentTrack: 'teste',
             updateCurrentTrack: mockUpdateCurrentTrack
         }
     }),

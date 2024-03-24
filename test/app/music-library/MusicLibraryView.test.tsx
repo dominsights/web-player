@@ -4,7 +4,7 @@ import { PlayQueueProvider } from '@/app/contexts/PlayQueueContext';
 
 describe('MusicLibraryView', () => {
     it('should render', () => {
-        render(
+        const renderResult = render(
             <PlayQueueProvider>
                 <MusicLibraryView />
             </PlayQueueProvider>

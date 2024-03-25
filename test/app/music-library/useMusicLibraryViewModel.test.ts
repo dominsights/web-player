@@ -23,9 +23,7 @@ describe("MusicLibraryViewModel", () => {
         (blob as any).name = "Windowpane";
         const fakeFile = blob as File;
 
-        act(() => {
-            result.current.upload(fakeFile);
-        })
+        act(() => result.current.upload(fakeFile));
 
         expect(result.current.musics).toContain("Windowpane");
     })
@@ -33,13 +31,8 @@ describe("MusicLibraryViewModel", () => {
     it("should play a song from the music library", () => {
         const {result} = renderHook(() => useMusicLibraryViewModel());
 
-        act(() => {
-            result.current.upload(windowPane);
-        })
-
-        act(() => {
-            result.current.play("Windowpane");
-        })
+        act(() => result.current.upload(windowPane));
+        act(() => result.current.play("Windowpane"));
 
         expect(mockUpdateCurrentTrack).toHaveBeenCalledWith(windowPane)
     })

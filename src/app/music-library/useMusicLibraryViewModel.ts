@@ -7,21 +7,8 @@ export const useMusicLibraryViewModel = () => {
     const {updateCurrentTrack} = usePlayQueueContext();
 
     const upload = (audioFile: File) => {
-        setMusicFiles(prevState => {
-            const newState = [
-                ...prevState,
-                audioFile
-            ]
-            return newState
-        });
-
-        setMusics(prevState => {
-            const newState = [
-                ...prevState,
-                audioFile.name
-            ]
-            return newState
-        });
+        setMusicFiles(prevState => [...prevState, audioFile]);
+        setMusics(prevState => [...prevState, audioFile.name]);
     }
 
     const play = (trackName: string) => {

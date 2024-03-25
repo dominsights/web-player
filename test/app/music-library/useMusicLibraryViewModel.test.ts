@@ -11,6 +11,10 @@ jest.mock('@/app/contexts/PlayQueueContext', () => ({
     }),
 }));
 
+const blob = new Blob([""], {type: "text/html"});
+(blob as any).name = "Windowpane";
+const windowPane = blob as File;
+
 describe("MusicLibraryViewModel", () => {
     it("should upload a song file", () => {
         const {result} = renderHook(() => useMusicLibraryViewModel());
@@ -29,10 +33,6 @@ describe("MusicLibraryViewModel", () => {
     it("should play a song from the music library", () => {
         const {result} = renderHook(() => useMusicLibraryViewModel());
 
-        const blob = new Blob([""], {type: "text/html"});
-        (blob as any).name = "Windowpane";
-        const windowPane = blob as File;
-
         act(() => {
             result.current.upload(windowPane);
         })
@@ -43,4 +43,15 @@ describe("MusicLibraryViewModel", () => {
 
         expect(mockUpdateCurrentTrack).toHaveBeenCalledWith(windowPane)
     })
+
+    it("should remove a song from the library", () => {
+        const {result} = renderHook(() => useMusicLibraryViewModel());
+
+        act(() => {
+            result.current.upload(windowPane);
+            result.current.remove("Windowpane");
+        })
+
+        expect(result.current.musics.length).toBe(0);
+    });
 })

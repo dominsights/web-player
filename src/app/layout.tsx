@@ -5,8 +5,10 @@ import "./globals.css";
 import Sidebar from "@/app/components/sidebar/Sidebar";
 import {SidebarViewModel} from "@/app/components/sidebar/SidebarViewModel";
 import { getPlaylists } from "@/app/lib/api/playlists";
-import {PlayQueueProvider} from "@/app/contexts/PlayQueueContext";
+import {EventEmitterProvider, useEventEmitter} from "@/app/contexts/EventEmitterContext";
 import Player from "@/app/components/player/Player";
+import EventEmitter from "eventemitter3";
+import MusicLibraryView from "@/app/music-library/MusicLibraryView";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,10 +25,10 @@ export default async function RootLayout({children}: Readonly<{ children: React.
         <html lang="en">
             <body className={inter.className}>
                 <Sidebar viewModel={viewModel}/>
-                <PlayQueueProvider>
+                <EventEmitterProvider>
                     {children}
                     <Player />
-                </PlayQueueProvider>
+                </EventEmitterProvider>
             </body>
         </html>
     );

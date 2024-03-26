@@ -1,10 +1,9 @@
 import {useState} from "react";
-import {usePlayQueueContext} from "@/app/contexts/PlayQueueContext";
+import {MusicLibraryProps} from "@/app/music-library/MusicLibraryView";
 
-export const useMusicLibraryViewModel = () => {
+export const useMusicLibraryViewModel = ({eventEmitter}: MusicLibraryProps) => {
     const [musics, setMusics] = useState<string[]>([]);
     const [musicFiles, setMusicFiles] = useState<File[]>([]);
-    const {updateCurrentTrack} = usePlayQueueContext();
 
     const upload = (audioFile: File) => {
         setMusicFiles(prevState => [...prevState, audioFile]);
@@ -14,7 +13,7 @@ export const useMusicLibraryViewModel = () => {
     const play = (trackName: string) => {
         const track = musicFiles.find(m => m.name === trackName);
         if (!track) throw new Error("tried to play track that doesn't exist!");
-        updateCurrentTrack(track);
+        eventEmitter.emit('playTrack', track);
     }
 
     const remove = (trackName: string) => {

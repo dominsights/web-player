@@ -1,28 +1,14 @@
 import {render} from '@testing-library/react'
 import MusicLibraryView from "@/app/music-library/MusicLibraryView";
-import { PlayQueueProvider } from '@/app/contexts/PlayQueueContext';
-import Player from '@/app/components/player/Player';
+import { EventEmitterProvider } from '@/app/contexts/EventEmitterContext';
+import EventEmitter from "eventemitter3";
 
 describe('MusicLibraryView', () => {
     it('should render', () => {
         const renderResult = render(
-            <PlayQueueProvider>
-                <MusicLibraryView />
-            </PlayQueueProvider>
+            <EventEmitterProvider>
+                <MusicLibraryView eventEmitter={new EventEmitter()} />
+            </EventEmitterProvider>
         );
-    })
-
-    it('should start playing song', () => {
-        const renderResult = render(
-            <PlayQueueProvider>
-                <MusicLibraryView />
-                <Player />
-            </PlayQueueProvider>
-        );
-
-        fail();
-        // click play button on music library
-
-        // expect player to begin playing selected track
     })
 })

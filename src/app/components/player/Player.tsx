@@ -1,11 +1,35 @@
-import React, {useRef} from "react";
-import {usePlayQueueContext} from "@/app/contexts/PlayQueueContext";
+import React, {useEffect, useRef, useState} from "react";
+import {useEventEmitter} from "@/app/contexts/EventEmitterContext";
+import EventEmitter from "eventemitter3";
 
 type AudioElementRef = HTMLAudioElement | null;
 
 export default function Player() {
     const audioRef = useRef<AudioElementRef>(null);
-    const { currentTrack } = usePlayQueueContext();
+    const [ currentTrack, setCurrentTrack ] = useState<string>();
+    const { eventEmitter } = useEventEmitter();
+
+    useEffect(() => {
+        const handlePlayTrack = (track: File) => {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                if (e.target && typeof e.target.result === 'string') {
+                    setCurrentTrack(e.target.result);
+                }
+                playAudio();
+            };
+
+            reader.readAsDataURL(track);
+        };
+
+        eventEmitter.on('playTrack', handlePlayTrack);
+
+        return () => {
+            eventEmitter.off('playTrack', handlePlayTrack);
+        };
+
+    }, []);
 
     const playAudio = (): void => {
         if (audioRef.current) {

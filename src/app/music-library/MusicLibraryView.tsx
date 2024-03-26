@@ -1,13 +1,18 @@
 'use client'
 import React from 'react';
-import {usePlayQueueContext} from "@/app/contexts/PlayQueueContext";
+import {useEventEmitter} from "@/app/contexts/EventEmitterContext";
 import {useMusicLibraryViewModel} from "@/app/music-library/useMusicLibraryViewModel";
+import EventEmitter from "eventemitter3";
 
-function MusicLibraryView() {
-    const { musics, upload, play } = useMusicLibraryViewModel();
+export interface MusicLibraryProps {
+    eventEmitter: EventEmitter
+}
+
+function MusicLibraryView(props: MusicLibraryProps) {
+    const {musics, upload, play} = useMusicLibraryViewModel(props);
 
     const onFileChange = (event: React.ChangeEvent<HTMLInputElement> | undefined) => {
-        if(!event || !event.target.files) return;
+        if (!event || !event.target.files) return;
 
         const audioFile = event.target.files[0];
         upload(audioFile);

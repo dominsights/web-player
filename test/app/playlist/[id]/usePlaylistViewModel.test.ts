@@ -1,8 +1,8 @@
 import { Player } from "@/app/lib/Player/Player";
-import { Playlist } from "@/app/lib/api/Playlist";
 import { Track } from "@/app/lib/api/Track";
 import { usePlaylistViewModel } from "@/app/playlist/[id]/usePlaylistViewModel";
 import { act, renderHook, waitFor } from "@testing-library/react";
+import {Playlist} from "@/app/lib/api/playlist";
 
 describe('PlaylistViewModel', () => {
     const player = new Player();

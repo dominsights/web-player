@@ -1,7 +1,7 @@
 import React from 'react'
 import {usePlaylistViewModel} from './usePlaylistViewModel';
-import {Player} from '@/app/lib/player/Player';
-import {Playlist} from '@/app/lib/api/Playlist';
+import {Playlist} from "@/app/lib/api/playlist";
+import {Player} from "@/app/lib/Player/Player";
 
 export default function PlaylistView({playlistId, player, fetchPlaylist}: {
     playlistId: number,

@@ -10,25 +10,25 @@ export class Track {
         this.title = title;
         this.artist = artist;
         this.album = album;
-        this.dateAdded = this.formatDate(dateAdded);
-        this.duration = this.secondsToTime(durationInSeconds);
+        this.dateAdded = formatDate(dateAdded);
+        this.duration = secondsToTime(durationInSeconds);
     }
+}
 
-    formatDate(date: Date) {
-        const today = new Date();
-        let oneWeekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+function formatDate(date: Date) {
+    const today = new Date();
+    let oneWeekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-        if (date >= oneWeekAgo) {
-            return 'This week';
-        } else {
-            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            return `${monthNames[date.getMonth()-1]} ${date.getDate()}, ${date.getFullYear()}`;
-        }
+    if (date >= oneWeekAgo) {
+        return 'This week';
+    } else {
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${monthNames[date.getMonth()-1]} ${date.getDate()}, ${date.getFullYear()}`;
     }
+}
 
-    secondsToTime (seconds: number): string {
-        const minutes: number = Math.floor(seconds / 60);
-        const remainingSeconds: number = seconds % 60;
-        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-    }
+function secondsToTime (seconds: number): string {
+    const minutes: number = Math.floor(seconds / 60);
+    const remainingSeconds: number = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
 }

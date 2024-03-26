@@ -9,6 +9,8 @@ import {EventEmitterProvider, useEventEmitter} from "@/app/contexts/EventEmitter
 import Player from "@/app/components/player/Player";
 import EventEmitter from "eventemitter3";
 import MusicLibraryView from "@/app/music-library/MusicLibraryView";
+import {StoreProvider} from "@/app/StoreProvider";
+import {Counter} from "@/app/components/counter/Counter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +24,7 @@ export default async function RootLayout({children}: Readonly<{ children: React.
     const viewModel = new SidebarViewModel(playlists);
 
     return (
+        <StoreProvider>
         <html lang="en">
             <body className={inter.className}>
                 <Sidebar viewModel={viewModel}/>
@@ -31,5 +34,6 @@ export default async function RootLayout({children}: Readonly<{ children: React.
                 </EventEmitterProvider>
             </body>
         </html>
+        </StoreProvider>
     );
 }

@@ -1,4 +1,4 @@
-import {Playlist} from "@/app/lib/api/Playlist";
+import {Playlist} from "@/app/lib/api/playlist";
 import { Track } from "./Track";
 
 const track1 = new Track("7empest", "TOOL", "Fear Inoculum", new Date(2024, 3, 2), 60 * 3);

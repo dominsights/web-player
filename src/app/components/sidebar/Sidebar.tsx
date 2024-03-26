@@ -1,13 +1,23 @@
 import React from 'react';
 import {SidebarViewModel} from "@/app/components/sidebar/SidebarViewModel";
 import Link from "next/link";
+// move to view model
+import { selectPlaylists } from "@/app/lib/features/playlists/playlistsSlice"
+import {useAppSelector} from "@/app/lib/hooks";
+// end move to view model
 
 function Sidebar(props: { viewModel: SidebarViewModel}) {
+
+// move to view model
+    const playlists = useAppSelector(selectPlaylists);
+// end move to view model
+
     return (
         <div>
             Sidebar
             <ul>
-                {props.viewModel.playlists.map(p =>
+                {/*{props.viewModel.playlists.map(p =>*/}
+                {playlists.map(p =>
                     (
                         <li key={p.id}>
                             <Link href={`/playlist/${p.id}`}>{p.title}</Link>

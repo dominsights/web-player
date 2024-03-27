@@ -4,7 +4,7 @@ import {edit, move, Playlist, remove} from "@/app/lib/api/Playlist";
 import { Player } from '@/app/lib/Player/Player';
 import { Track as PlayerTrack } from "@/app/lib/Player/Track";
 
-export const usePlaylistViewModel = (id: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist | undefined>) => {
+export const usePlaylist = (id: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist | undefined>) => {
     const [playlist, setPlaylist] = useState<Playlist>();
 
     useEffect(() => {

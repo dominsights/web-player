@@ -1,6 +1,6 @@
 import { Playlist } from "@/app/lib/api/playlist";
 
-export class SidebarViewModel {
+export class UseSidebar {
     playlists: Playlist[];
 
     constructor(playlists: Playlist[]) {

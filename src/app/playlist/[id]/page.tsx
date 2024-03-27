@@ -1,6 +1,6 @@
 'use client'
 import { useParams } from 'next/navigation'
-import PlaylistView from './PlaylistView';
+import Playlist from './Playlist';
 import { Player } from '@/app/lib/player/Player';
 import { getPlaylistById } from '@/app/lib/api/playlists';
 
@@ -9,7 +9,7 @@ export default function Page() {
     const player = new Player();
 
     return (
-        <PlaylistView
+        <Playlist
             playlistId={+id}
             player={player}
             fetchPlaylist={getPlaylistById}

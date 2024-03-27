@@ -1,12 +1,12 @@
 import React from 'react';
-import {SidebarViewModel} from "@/app/components/sidebar/SidebarViewModel";
+import {UseSidebar} from "@/app/components/sidebar/useSidebar";
 import Link from "next/link";
 // move to view model
 import { selectPlaylists } from "@/app/lib/features/playlists/playlistsSlice"
 import {useAppSelector} from "@/app/lib/hooks";
 // end move to view model
 
-function Sidebar(props: { viewModel: SidebarViewModel}) {
+function Sidebar(props: { viewModel: UseSidebar}) {
 
 // move to view model
     const playlists = useAppSelector(selectPlaylists);

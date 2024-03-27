@@ -1,5 +1,5 @@
 import {act, renderHook} from "@testing-library/react";
-import {useMusicLibraryViewModel} from "@/app/music-library/useMusicLibraryViewModel";
+import {useMusicLibrary} from "@/app/music-library/useMusicLibrary";
 import EventEmitter from "eventemitter3";
 
 const eventEmitter = new EventEmitter();
@@ -12,7 +12,7 @@ const windowPane = blob as File;
 
 describe("MusicLibraryViewModel", () => {
     it("should upload a song file", () => {
-        const {result} = renderHook(() => useMusicLibraryViewModel({eventEmitter}));
+        const {result} = renderHook(() => useMusicLibrary({eventEmitter}));
 
         const blob = new Blob([""], {type: "text/html"});
         (blob as any).name = "Windowpane";
@@ -24,7 +24,7 @@ describe("MusicLibraryViewModel", () => {
     })
 
     it("should play a song from the music library", () => {
-        const {result} = renderHook(() => useMusicLibraryViewModel({eventEmitter}));
+        const {result} = renderHook(() => useMusicLibrary({eventEmitter}));
 
         act(() => result.current.upload(windowPane));
         act(() => result.current.play("Windowpane"));
@@ -33,7 +33,7 @@ describe("MusicLibraryViewModel", () => {
     })
 
     it("should remove a song from the library", () => {
-        const {result} = renderHook(() => useMusicLibraryViewModel({eventEmitter}));
+        const {result} = renderHook(() => useMusicLibrary({eventEmitter}));
 
         act(() => {
             result.current.upload(windowPane);

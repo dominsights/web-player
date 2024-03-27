@@ -1,5 +1,5 @@
-import PlaylistsView from "@/app/playlist/PlaylistsView";
+import Playlists from "@/app/playlist/Playlists";
 
 export default function Page() {
-    return (<PlaylistsView />)
+    return (<Playlists />)
 }

@@ -1,15 +1,15 @@
 'use client'
 import React from 'react';
 import {useEventEmitter} from "@/app/contexts/EventEmitterContext";
-import {useMusicLibraryViewModel} from "@/app/music-library/useMusicLibraryViewModel";
+import {useMusicLibrary} from "@/app/music-library/useMusicLibrary";
 import EventEmitter from "eventemitter3";
 
 export interface MusicLibraryProps {
     eventEmitter: EventEmitter
 }
 
-function MusicLibraryView(props: MusicLibraryProps) {
-    const {musics, upload, play} = useMusicLibraryViewModel(props);
+function MusicLibrary(props: MusicLibraryProps) {
+    const {musics, upload, play} = useMusicLibrary(props);
 
     const onFileChange = (event: React.ChangeEvent<HTMLInputElement> | undefined) => {
         if (!event || !event.target.files) return;
@@ -43,4 +43,4 @@ function MusicLibraryView(props: MusicLibraryProps) {
     );
 }
 
-export default MusicLibraryView;
+export default MusicLibrary;

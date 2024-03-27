@@ -1,5 +1,5 @@
 import {act, renderHook} from "@testing-library/react";
-import {usePlaylistsViewModel} from "@/app/playlist/usePlaylistsViewModel";
+import {usePlaylists} from "@/app/playlist/usePlaylists";
 import {Track} from "@/app/lib/api/Track";
 import {Playlist} from "@/app/lib/api/playlist";
 import {StoreProvider} from "@/app/StoreProvider";
@@ -16,7 +16,7 @@ describe('usePlaylistsViewModel', () => {
             <StoreProvider>{children}</StoreProvider>
         )
 
-        const { result } = renderHook(() => usePlaylistsViewModel(), { wrapper });
+        const { result } = renderHook(() => usePlaylists(), { wrapper });
 
         act(() => result.current.add(playlist));
 

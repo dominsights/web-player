@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {MusicLibraryProps} from "@/app/music-library/MusicLibraryView";
+import {MusicLibraryProps} from "@/app/music-library/MusicLibrary";
 
-export const useMusicLibraryViewModel = ({eventEmitter}: MusicLibraryProps) => {
+export const useMusicLibrary = ({eventEmitter}: MusicLibraryProps) => {
     const [musics, setMusics] = useState<string[]>([]);
     const [musicFiles, setMusicFiles] = useState<File[]>([]);
 

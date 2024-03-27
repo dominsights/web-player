@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/app/components/sidebar/Sidebar";
-import {SidebarViewModel} from "@/app/components/sidebar/SidebarViewModel";
+import {UseSidebar} from "@/app/components/sidebar/useSidebar";
 import { getPlaylists } from "@/app/lib/api/playlists";
 import {EventEmitterProvider, useEventEmitter} from "@/app/contexts/EventEmitterContext";
 import Player from "@/app/components/player/Player";
 import EventEmitter from "eventemitter3";
-import MusicLibraryView from "@/app/music-library/MusicLibraryView";
+import MusicLibrary from "@/app/music-library/MusicLibrary";
 import {StoreProvider} from "@/app/StoreProvider";
 import {Counter} from "@/app/components/counter/Counter";
 
@@ -21,7 +21,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default async function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
     const playlists = await getPlaylists();
-    const viewModel = new SidebarViewModel(playlists);
+    const viewModel = new UseSidebar(playlists);
 
     return (
         <StoreProvider>

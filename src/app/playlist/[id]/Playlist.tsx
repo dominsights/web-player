@@ -1,9 +1,9 @@
 import React from 'react'
-import {usePlaylistViewModel} from './usePlaylistViewModel';
+import {usePlaylist} from './usePlaylist';
 import {Playlist} from "@/app/lib/api/playlist";
 import {Player} from "@/app/lib/Player/Player";
 
-export default function PlaylistView({playlistId, player, fetchPlaylist}: {
+export default function Playlist({playlistId, player, fetchPlaylist}: {
     playlistId: number,
     player: Player,
     fetchPlaylist: (id: number) => Promise<Playlist | undefined>
@@ -13,7 +13,7 @@ export default function PlaylistView({playlistId, player, fetchPlaylist}: {
         play,
         removeTrack,
         playlist
-    } = usePlaylistViewModel(playlistId, player, fetchPlaylist);
+    } = usePlaylist(playlistId, player, fetchPlaylist);
 
     return (
         <div>

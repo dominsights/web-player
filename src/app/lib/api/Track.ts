@@ -1,18 +1,10 @@
 
-export class Track {
+export type Track = {
     title: string;
     artist: string;
     album: string;
     dateAdded: string;
     duration: string;
-
-    constructor(title: string, artist: string, album: string, dateAdded: Date, durationInSeconds: number) {
-        this.title = title;
-        this.artist = artist;
-        this.album = album;
-        this.dateAdded = formatDate(dateAdded);
-        this.duration = secondsToTime(durationInSeconds);
-    }
 }
 
 function formatDate(date: Date) {
@@ -27,7 +19,7 @@ function formatDate(date: Date) {
     }
 }
 
-function secondsToTime (seconds: number): string {
+export function secondsToTime (seconds: number): string {
     const minutes: number = Math.floor(seconds / 60);
     const remainingSeconds: number = seconds % 60;
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;

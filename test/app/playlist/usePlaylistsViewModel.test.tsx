@@ -2,6 +2,8 @@ import {act, renderHook} from "@testing-library/react";
 import {usePlaylistsViewModel} from "@/app/playlist/usePlaylistsViewModel";
 import {Track} from "@/app/lib/api/Track";
 import {Playlist} from "@/app/lib/api/playlist";
+import {StoreProvider} from "@/app/StoreProvider";
+import {ReactNode} from "react";
 
 describe('usePlaylistsViewModel', () => {
     const track1 = new Track("7empest", "TOOL", "Fear Inoculum", new Date(2024, 3, 2), 60 * 3);
@@ -10,7 +12,11 @@ describe('usePlaylistsViewModel', () => {
     const playlist: Playlist = new Playlist(1, "Rock'n Roll", "My favorite Rock'n Roll songs", [track1, track2]);
 
     it('should add playlist', () => {
-        const { result } = renderHook(() => usePlaylistsViewModel());
+        const wrapper = ({ children }: { children: ReactNode}) => (
+            <StoreProvider>{children}</StoreProvider>
+        )
+
+        const { result } = renderHook(() => usePlaylistsViewModel(), { wrapper });
 
         act(() => result.current.add(playlist));
 

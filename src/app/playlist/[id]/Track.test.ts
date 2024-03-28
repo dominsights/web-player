@@ -1,4 +1,4 @@
-import {secondsToTime, Track} from "@/app/lib/api/Track";
+import {formatDate, secondsToTime, Track} from "@/app/lib/api/Track";
 
 describe('Track', () => {
     it('should display date in expected format', () => {
@@ -6,7 +6,7 @@ describe('Track', () => {
             title: "7empest",
             artist: "TOOL",
             album: "Fear Inoculum",
-            dateAdded: new Date(2024, 3, 2).toISOString(),
+            dateAdded: formatDate(new Date(2024, 3, 2)),
             duration: secondsToTime(60 * 3)
         };
         expect(track1.dateAdded).toEqual('This week');
@@ -15,7 +15,7 @@ describe('Track', () => {
             title: "7empest",
             artist: "TOOL",
             album: "Fear Inoculum",
-            dateAdded: new Date(2024, 1, 20).toISOString(),
+            dateAdded: formatDate(new Date(2024, 1, 20)),
             duration: secondsToTime(60 * 3)
         };
         expect(track2.dateAdded).toEqual('Jan 20, 2024');

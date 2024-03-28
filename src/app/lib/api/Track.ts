@@ -7,7 +7,7 @@ export type Track = {
     duration: string;
 }
 
-function formatDate(date: Date) {
+export function formatDate(date: Date) {
     const today = new Date();
     let oneWeekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
 

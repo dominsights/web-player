@@ -1,28 +1,14 @@
 import { Player } from "@/app/lib/Player/Player";
-import {secondsToTime, Track} from "@/app/lib/api/Track";
+import {formatDate, secondsToTime, Track} from "@/app/lib/api/Track";
 import { usePlaylist } from "@/app/playlist/[id]/usePlaylist";
 import { act, renderHook, waitFor } from "@testing-library/react";
 import {Playlist} from "@/app/lib/api/playlist";
+import {playlists, track1, track2} from "@/app/lib/mocks/mockData";
 
 describe('PlaylistViewModel', () => {
     const player = new Player();
-    const track1 = {
-        title: "7empest",
-        artist: "TOOL",
-        album: "Fear Inoculum",
-        dateAdded: new Date(2024, 3, 2).toISOString(),
-        duration: secondsToTime(60 * 3)
-    };
 
-    const track2 = {
-        title: "Without Walls",
-        artist: "IQ",
-        album: "The Road of Bones",
-        dateAdded: new Date(2024, 3, 2).toISOString(),
-        duration: secondsToTime(60 * 5)
-    };
-
-    const playlist = {id: 1, title: "Rock'n Roll", description: "My favorite Rock'n Roll songs", tracks: [track1, track2]};
+    const playlist = playlists[0];
     const fetchPlaylist = (id: number) => Promise.resolve(playlist);
 
     it('should load correct data', async () => {

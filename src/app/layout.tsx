@@ -16,13 +16,13 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
-    const fetchPlaylists = () => useAppSelector(selectPlaylists);
+    const useFetchPlaylists = () => useAppSelector(selectPlaylists);
 
     return (
         <StoreProvider>
         <html lang="en">
             <body className={inter.className}>
-                <Sidebar fetchPlaylists={fetchPlaylists} />
+                <Sidebar fetchPlaylists={useFetchPlaylists} />
                 <EventEmitterProvider>
                     {children}
                     <Player />

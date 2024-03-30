@@ -1,16 +1,9 @@
 import React from 'react';
 import Link from "next/link";
-// move to view model
-import {selectPlaylists} from "@/app/lib/features/playlists/playlistsSlice"
-import {useAppSelector} from "@/app/lib/hooks";
+import {Playlist} from "@/app/lib/api/playlist";
 
-// end move to view model
-
-function Sidebar() {
-
-// move to view model
-    const playlists = useAppSelector(selectPlaylists);
-// end move to view model
+function Sidebar({ fetchPlaylists } : { fetchPlaylists: () => Playlist[]}) {
+    const playlists = fetchPlaylists();
 
     return (
         <div>

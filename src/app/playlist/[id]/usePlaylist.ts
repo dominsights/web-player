@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Track } from "@/app/lib/api/Track";
-import {edit, move, Playlist, remove} from "@/app/lib/api/Playlist";
+import {edit, move, Playlist, remove} from "@/app/lib/api/playlist";
 import { Player } from '@/app/lib/player/Player';
 import { Track as PlayerTrack } from "@/app/lib/player/Track";
 

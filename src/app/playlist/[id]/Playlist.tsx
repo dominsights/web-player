@@ -16,7 +16,7 @@ export default function Playlist({playlistId, player, fetchPlaylist}: {
     } = usePlaylist(playlistId, player, fetchPlaylist);
 
     return (
-        <div>
+        <main>
             <p>Playlist: {playlist?.title}</p>
             <button onClick={() => playAll()}>Play All</button>
             <table>
@@ -46,5 +46,5 @@ export default function Playlist({playlistId, player, fetchPlaylist}: {
                 ))}
                 </tbody>
             </table>
-        </div>)
+        </main>)
 }

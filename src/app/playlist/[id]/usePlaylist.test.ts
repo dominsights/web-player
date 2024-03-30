@@ -1,4 +1,4 @@
-import { Player } from "@/app/lib/Player/Player";
+import { Player } from "@/app/lib/player/Player";
 import {formatDate, secondsToTime, Track} from "@/app/lib/api/Track";
 import { usePlaylist } from "@/app/playlist/[id]/usePlaylist";
 import { act, renderHook, waitFor } from "@testing-library/react";

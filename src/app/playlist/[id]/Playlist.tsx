@@ -1,7 +1,7 @@
 import React from 'react'
 import {usePlaylist} from './usePlaylist';
 import {Playlist} from "@/app/lib/api/playlist";
-import {Player} from "@/app/lib/Player/Player";
+import {Player} from "@/app/lib/player/Player";
 
 export default function Playlist({playlistId, player, fetchPlaylist}: {
     playlistId: number,

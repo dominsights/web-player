@@ -1,29 +1,37 @@
 import React from 'react';
 import Link from "next/link";
 import {Playlist} from "@/app/lib/api/playlist";
+import {Divider, Drawer, List, ListItem, ListItemButton, ListItemText} from "@mui/material";
 
-function Sidebar({ fetchPlaylists } : { fetchPlaylists: () => Playlist[]}) {
+function Sidebar({fetchPlaylists}: { fetchPlaylists: () => Playlist[] }) {
     const playlists = fetchPlaylists();
 
     return (
-        <div>
-            Sidebar
-            <ul>
-                {playlists.map(p =>
-                    (
-                        <li key={p.id}>
-                            <Link href={`/playlist/${p.id}`}>{p.title}</Link>
-                        </li>
-                    ))}
-                <li>
-                    <Link href={'/music-library'}>Music Library</Link>
-                </li>
-                <li>
-                    <Link href={'/playlists'}>Playlists</Link>
-                </li>
-            </ul>
-
-        </div>
+        <Drawer
+            variant="permanent"
+            anchor="left"
+        >
+            <List>
+                <ListItem disablePadding>
+                    <ListItemButton component="a" href={`/music-library`}>
+                        <ListItemText primary={'Music Library'}/>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton component="a" href={`/playlists`}>
+                        <ListItemText primary={'Playlists'}/>
+                    </ListItemButton>
+                </ListItem>
+                <Divider />
+                {playlists.map(p => (
+                    <ListItem key={p.id} disablePadding>
+                        <ListItemButton component="a" href={`/playlist/${p.id}`}>
+                            <ListItemText primary={p.title}/>
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Drawer>
     );
 }
 

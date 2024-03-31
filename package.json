@@ -10,9 +10,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.15.14",
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "latest",
+    "@mui/material": "latest",
+    "@mui/material-nextjs": "latest",
     "@reduxjs/toolkit": "^2.2.2",
     "@testing-library/react": "^14.2.1",
     "eventemitter3": "^5.0.1",

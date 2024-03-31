@@ -11,6 +11,7 @@ import theme from './theme';
 import CssBaseline from "@mui/material/CssBaseline";
 import {AppRouterCacheProvider} from '@mui/material-nextjs/v14-appRouter';
 import {Box, Container} from "@mui/material";
+import Footer from "@/app/components/Footer";
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
     const useFetchPlaylists = () => useAppSelector(selectPlaylists);
@@ -35,7 +36,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
                                 }}
                             >
                                 {children}
-                                <Player/>
+                                <Footer />
                             </Box>
                         </Container>
                     </EventEmitterProvider>

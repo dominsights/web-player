@@ -3,6 +3,7 @@ import React from 'react';
 import {useEventEmitter} from "@/app/contexts/EventEmitterContext";
 import {useMusicLibrary} from "@/app/music-library/useMusicLibrary";
 import EventEmitter from "eventemitter3";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 
 export interface MusicLibraryProps {
     eventEmitter: EventEmitter
@@ -19,26 +20,30 @@ function MusicLibrary(props: MusicLibraryProps) {
     };
 
     return (
-        <div>Music Library View
+        <div>
             <input type='file' onChange={onFileChange}/>
-            <table>
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {musics?.map(m => (
-                    <tr key={m}>
-                        <td>{m}</td>
-                        <td>
-                            <button onClick={() => play(m)}>Play</button>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            <TableContainer component={Paper}>
+                <Table sx={{minWidth: 650}}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align={"right"}>Title</TableCell>
+                            <TableCell align={"right"}></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {musics?.map(m => (
+                            <TableRow key={m} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                                <TableCell component="th" scope="row">
+                                    {m}
+                                </TableCell>
+                                <TableCell align="right">
+                                    <button onClick={() => play(m)}>Play</button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     );
 }

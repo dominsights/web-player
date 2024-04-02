@@ -1,11 +1,19 @@
 'use client'
 import React from 'react';
-import {useEventEmitter} from "@/app/contexts/EventEmitterContext";
 import {useMusicLibrary} from "@/app/music-library/useMusicLibrary";
 import EventEmitter from "eventemitter3";
-import { IconButton, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {DeleteOutline} from "@mui/icons-material";
+import {
+    Button,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Stack
+} from "@mui/material";
+import MusicMoreMenu from "@/app/music-library/components/MusicMoreMenu";
 
 export interface MusicLibraryProps {
     eventEmitter: EventEmitter
@@ -22,8 +30,8 @@ function MusicLibrary(props: MusicLibraryProps) {
     };
 
     return (
-        <div>
-            <Button variant="contained" component={'label'}>
+        <Stack spacing={3}>
+            <Button variant="contained" component={'label'} sx={{ width: '20%'}}>
                 Upload File
                 <input type='file' hidden onChange={onFileChange}/>
             </Button>
@@ -31,8 +39,8 @@ function MusicLibrary(props: MusicLibraryProps) {
                 <Table sx={{minWidth: 650}}>
                     <TableHead>
                         <TableRow>
-                            <TableCell align={"right"}>Title</TableCell>
-                            <TableCell align={"right"}></TableCell>
+                            <TableCell align={"left"}>Title</TableCell>
+                            <TableCell align={"left"}></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -42,15 +50,14 @@ function MusicLibrary(props: MusicLibraryProps) {
                                     {m}
                                 </TableCell>
                                 <TableCell align="right">
-                                    <IconButton aria-label="more"><MoreVertIcon/></IconButton>
-                                    {/*<button onClick={() => play(m)}>Play</button>*/}
+                                    <MusicMoreMenu play={play} trackName={m} />
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-        </div>
+        </Stack>
     );
 }
 

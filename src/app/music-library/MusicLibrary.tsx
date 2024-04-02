@@ -3,7 +3,9 @@ import React from 'react';
 import {useEventEmitter} from "@/app/contexts/EventEmitterContext";
 import {useMusicLibrary} from "@/app/music-library/useMusicLibrary";
 import EventEmitter from "eventemitter3";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import { IconButton, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {DeleteOutline} from "@mui/icons-material";
 
 export interface MusicLibraryProps {
     eventEmitter: EventEmitter
@@ -21,7 +23,10 @@ function MusicLibrary(props: MusicLibraryProps) {
 
     return (
         <div>
-            <input type='file' onChange={onFileChange}/>
+            <Button variant="contained" component={'label'}>
+                Upload File
+                <input type='file' hidden onChange={onFileChange}/>
+            </Button>
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}}>
                     <TableHead>
@@ -37,7 +42,8 @@ function MusicLibrary(props: MusicLibraryProps) {
                                     {m}
                                 </TableCell>
                                 <TableCell align="right">
-                                    <button onClick={() => play(m)}>Play</button>
+                                    <IconButton aria-label="more"><MoreVertIcon/></IconButton>
+                                    {/*<button onClick={() => play(m)}>Play</button>*/}
                                 </TableCell>
                             </TableRow>
                         ))}

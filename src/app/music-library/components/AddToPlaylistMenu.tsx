@@ -1,20 +1,17 @@
 import React from 'react';
-import {IconButton, ListItemIcon, ListItemText, Menu, MenuItem} from "@mui/material";
-import {Add, PlayArrow} from "@mui/icons-material";
+import {ListItemIcon, ListItemText, Menu, MenuItem} from "@mui/material";
+import {Add} from "@mui/icons-material";
 
 function AddToPlaylistMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
     const handleClose = () => {
         setAnchorEl(null);
     };
 
     return (
         <div>
-            <MenuItem onClick={(e) => setAnchorEl(e.currentTarget)}>
+            <MenuItem onMouseEnter={(e) => setAnchorEl(e.currentTarget)}>
                 <ListItemIcon>
                     <Add fontSize="small" />
                 </ListItemIcon>
@@ -35,6 +32,9 @@ function AddToPlaylistMenu() {
                 transformOrigin={{
                     vertical: 'top',
                     horizontal: 'left',
+                }}
+                sx={{
+                    marginLeft: '1px'
                 }}
             >
                 <MenuItem>

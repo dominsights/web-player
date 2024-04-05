@@ -45,12 +45,12 @@ function MusicLibrary(props: MusicLibraryProps) {
                     </TableHead>
                     <TableBody>
                         {musics?.map(m => (
-                            <TableRow key={m} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                            <TableRow key={m.name} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                                 <TableCell component="th" scope="row">
-                                    {m}
+                                    {m.name}
                                 </TableCell>
                                 <TableCell align="right">
-                                    <MusicMoreMenu play={play} trackName={m} />
+                                    <MusicMoreMenu play={play} trackName={m.name} />
                                 </TableCell>
                             </TableRow>
                         ))}

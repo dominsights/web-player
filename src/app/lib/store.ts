@@ -3,10 +3,11 @@ import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import { counterSlice } from "./features/counter/counterSlice";
 import { quotesApiSlice } from "./features/quotes/quotesApiSlice";
 import { playlistsSlice } from "@/app/lib/features/playlists/playlistsSlice";
+import {musicLibrarySlice} from "@/app/lib/features/music-library/musicLibrarySlice";
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
-const rootReducer = combineSlices(counterSlice, quotesApiSlice, playlistsSlice);
+const rootReducer = combineSlices(counterSlice, quotesApiSlice, playlistsSlice, musicLibrarySlice);
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>;
 

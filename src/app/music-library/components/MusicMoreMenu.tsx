@@ -1,7 +1,7 @@
 import React from 'react';
 import {IconButton, ListItemIcon, ListItemText, Menu, MenuItem} from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import {Add, PlayArrow} from "@mui/icons-material";
+import {PlayArrow} from "@mui/icons-material";
 import AddToPlaylistMenu from "@/app/music-library/components/AddToPlaylistMenu";
 
 function MusicMoreMenu({ play, trackName }: { play: (trackName: string) => void, trackName: string }) {

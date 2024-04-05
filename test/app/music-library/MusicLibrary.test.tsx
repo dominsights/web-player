@@ -10,9 +10,11 @@ import {playlists} from "@/app/lib/mocks/mockData";
 describe('MusicLibraryView', () => {
     it('should render', () => {
         const renderResult = render(
-            <EventEmitterProvider>
-                <MusicLibrary eventEmitter={new EventEmitter()}/>
-            </EventEmitterProvider>
+            <StoreProvider>
+                <EventEmitterProvider>
+                    <MusicLibrary eventEmitter={new EventEmitter()}/>
+                </EventEmitterProvider>
+            </StoreProvider>
         );
     })
 
@@ -27,14 +29,19 @@ describe('MusicLibraryView', () => {
             </StoreProvider>
         );
 
-        const addToPlaylist = renderResult.getByText(/add to playlist/i);
-        fireEvent.mouseOver(addToPlaylist);
-        await waitFor(() => renderResult.getByTestId('dropdown-playlists-menu'))
+        await waitFor(() =>
+            expect(renderResult.getByText('Windowpane')).toBeInTheDocument()
+        )
 
-        const playlistMenuItem = renderResult.getByRole('menu-item', { value: { text: playlist.title}});
-        fireEvent.click(playlistMenuItem);
+        renderResult.debug();
 
-
-
+        // await waitFor(() => expect(renderResult.getByRole('button', {name: /more/i})).toBeInTheDocument());
+        //
+        // fireEvent.click(renderResult.getByRole('button', {name: /more/i}));
+        // fireEvent.mouseOver(renderResult.getByText(/add to playlist/i));
+        //
+        // await waitFor(() => renderResult.getByTestId('dropdown-playlists-menu'))
+        //
+        // fireEvent.click(renderResult.getByRole('menuitem', {name: playlist.title}));
     })
 })

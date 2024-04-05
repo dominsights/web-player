@@ -5,6 +5,8 @@ import type { ReactNode } from "react";
 import { useEffect, useRef } from "react";
 import { Provider } from "react-redux";
 import {AppStore, makeStore} from "@/app/lib/store";
+import {useAppDispatch} from "@/app/lib/hooks";
+import {fetchMusicAsync} from "@/app/lib/features/music-library/musicLibrarySlice";
 
 interface Props {
     readonly children: ReactNode;

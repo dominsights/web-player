@@ -1,13 +1,25 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {MusicLibraryProps} from "@/app/music-library/MusicLibrary";
+import {useAppDispatch, useAppSelector} from "@/app/lib/hooks";
+import {
+    selectMusics,
+    add,
+    remove as removeMusic, fetchMusicAsync,
+} from "@/app/lib/features/music-library/musicLibrarySlice";
 
 export const useMusicLibrary = ({eventEmitter}: MusicLibraryProps) => {
-    const [musics, setMusics] = useState<string[]>([]);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(fetchMusicAsync());
+    }, []);
+
+    const musics = useAppSelector(selectMusics);
     const [musicFiles, setMusicFiles] = useState<File[]>([]);
 
     const upload = (audioFile: File) => {
         setMusicFiles(prevState => [...prevState, audioFile]);
-        setMusics(prevState => [...prevState, audioFile.name]);
+        dispatch(add({ name: audioFile.name }))
     }
 
     const play = (trackName: string) => {
@@ -18,7 +30,7 @@ export const useMusicLibrary = ({eventEmitter}: MusicLibraryProps) => {
 
     const remove = (trackName: string) => {
         setMusicFiles(prevState => prevState.filter(f => f.name !== trackName));
-        setMusics(prevState => prevState.filter(t => t !== trackName));
+        dispatch(removeMusic({ name: trackName}));
     }
 
     return {upload, musics, play, remove}

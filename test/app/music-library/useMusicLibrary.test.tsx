@@ -1,4 +1,4 @@
-import {act, renderHook} from "@testing-library/react";
+import {act, renderHook, waitFor} from "@testing-library/react";
 import {useMusicLibrary} from "@/app/music-library/useMusicLibrary";
 import EventEmitter from "eventemitter3";
 import {ReactNode} from "react";
@@ -13,6 +13,18 @@ const blob = new Blob([""], {type: "text/html"});
 const windowPane = blob as File;
 
 describe("MusicLibraryViewModel", () => {
+    it("should load initial music data", async () => {
+        const wrapper = ({children}: { children: ReactNode }) => (
+            <StoreProvider>{children}</StoreProvider>
+        )
+
+        const {result} = renderHook(() => useMusicLibrary({eventEmitter}), {wrapper});
+
+        await waitFor(() => result.current.musics.length == 1);
+
+        expect(result.current.musics).toContainEqual({name: "Windowpane"});
+    })
+
     it("should upload a song file", () => {
         const wrapper = ({ children }: { children: ReactNode}) => (
             <StoreProvider>{children}</StoreProvider>

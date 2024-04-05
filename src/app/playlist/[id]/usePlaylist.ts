@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Track } from "@/app/lib/api/Track";
-import {edit, move, Playlist, remove} from "@/app/lib/api/playlist";
-import { Player } from '@/app/lib/player/Player';
-import { Track as PlayerTrack } from "@/app/lib/player/Track";
+import { Track } from "@/app/lib/features/playlists/Track";
+import {edit, move, Playlist, remove} from "@/app/lib/features/playlists/playlist";
+import { Player } from '@/app/lib/features/player/Player';
+import { Track as PlayerTrack } from "@/app/lib/features/player/Track";
 
 export const usePlaylist = (id: number, player: Player, fetchPlaylist: (id: number) => Promise<Playlist | undefined>) => {
     const [playlist, setPlaylist] = useState<Playlist>();

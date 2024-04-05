@@ -1,4 +1,4 @@
-import {formatDate, secondsToTime} from "@/app/lib/api/Track";
+import {formatDate, secondsToTime} from "@/app/lib/features/playlists/Track";
 
 export const track1 = {
     title: "7empest",

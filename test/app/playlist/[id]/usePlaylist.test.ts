@@ -1,8 +1,8 @@
-import { Player } from "@/app/lib/player/Player";
-import {formatDate, secondsToTime, Track} from "@/app/lib/api/Track";
+import { Player } from "@/app/lib/features/player/Player";
+import {formatDate, secondsToTime, Track} from "@/app/lib/features/playlists/Track";
 import { usePlaylist } from "@/app/playlist/[id]/usePlaylist";
 import { act, renderHook, waitFor } from "@testing-library/react";
-import {Playlist} from "@/app/lib/api/playlist";
+import {Playlist} from "@/app/lib/features/playlists/playlist";
 import {playlists, track1, track2} from "@/app/lib/mocks/mockData";
 
 describe('PlaylistViewModel', () => {

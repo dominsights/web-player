@@ -1,6 +1,5 @@
 import React from 'react';
-import Link from "next/link";
-import {Playlist} from "@/app/lib/api/playlist";
+import {Playlist} from "@/app/lib/features/playlists/playlist";
 import {Divider, Drawer, List, ListItem, ListItemButton, ListItemText} from "@mui/material";
 
 function Sidebar({fetchPlaylists}: { fetchPlaylists: () => Playlist[] }) {

@@ -1,6 +1,6 @@
 import {act, renderHook} from "@testing-library/react";
 import {usePlaylists} from "@/app/playlists/usePlaylists";
-import {secondsToTime, Track} from "@/app/lib/api/Track";
+import {secondsToTime, Track} from "@/app/lib/features/playlists/Track";
 import {StoreProvider} from "@/app/StoreProvider";
 import {ReactNode} from "react";
 

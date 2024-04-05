@@ -1,4 +1,4 @@
-import {formatDate, secondsToTime, Track} from "@/app/lib/api/Track";
+import {formatDate, secondsToTime, Track} from "@/app/lib/features/playlists/Track";
 
 describe('Track', () => {
     it('should display date in expected format', () => {

@@ -1,4 +1,4 @@
-import {Playlist} from "@/app/lib/api/playlist";
+import {Playlist} from "@/app/lib/features/playlists/playlist";
 import {createAppSlice} from "@/app/lib/features/createAppSlice";
 import {PayloadAction} from "@reduxjs/toolkit";
 import { playlists } from '../../mocks/mockData';

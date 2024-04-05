@@ -4,7 +4,7 @@ import {EventEmitterProvider} from '@/app/contexts/EventEmitterContext';
 import EventEmitter from "eventemitter3";
 import {StoreProvider} from "@/app/StoreProvider";
 import Playlist from "@/app/playlist/[id]/Playlist";
-import {Player} from "@/app/lib/player/Player";
+import {Player} from "@/app/lib/features/player/Player";
 import {playlists} from "@/app/lib/mocks/mockData";
 
 describe('MusicLibraryView', () => {
